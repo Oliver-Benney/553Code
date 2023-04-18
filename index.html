@@ -1,19 +1,216 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PoseNet example using p5.js</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoseDoodle</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
-  <script src="http://localhost:8080/ml5.js" type="text/javascript"></script>
-  
+        video {
+            padding-top: 100px;
+            position: absolute;
+            transform: scale(-1, 1);
+        }
+
+        main {
+            position: absolute;
+            z-index: 100;
+        }
+
+    </style>
 </head>
-
 <body>
-  <h1>PoseNet example using p5.js</h1>
-  <p id='status'>Loading model...</p>
-  <script src="sketch.js"></script>
-</body>
+     
+      <div class="title">
+          <h1>PoseDoodle</h1>
+      </div>
+      
+      <div class="frame">
+        
+      </div>
 
+      <div class="video">
+        <div id="holder"></div>
+      </div>
+
+    <div id="MAIN">
+      <div class="screen">
+        <div id="tips">
+          <div class="toolTips">
+            Tooltips
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p id = "status">Loading...</p>
+    <script src="https://unpkg.com/p5"></script>
+    <script src="https://unpkg.com/ml5"></script>
+    <script src="https://cdn.jsdelivr.net/gh/IDMNYU/p5.js-speech@0.0.3/lib/p5.speech.js"></script>
+    <script>
+        let video;
+        let poseNet;
+        let poses = [];
+        let leftWristX, leftWristY;
+        let rightWristX, rightWristY;
+        let fireworks = [];
+        let fw = 1
+
+        function setup() {
+            canvas = createCanvas(683, 483);
+            video = createCapture(VIDEO);
+            video.parent('holder');
+            video.size(width, height);
+            //video.hide();
+
+            noLoop();
+
+            leftWristX = width/2;
+            leftWristY = height/2;
+            rightWristX = width/2;
+            rightWristY = height/2;
+
+            poseNet = ml5.poseNet(video, modelReady);
+            poseNet.on('pose', results => {
+            poses = results;});
+            
+            let SpeechRec = new p5.SpeechRec('en-US', gotSpeech);
+            let continuous = true;
+            let interim = false;
+            SpeechRec.start(continuous, interim);
+
+            function gotSpeech() {
+              if (SpeechRec.resultValue) {
+                    var mostrecentword = SpeechRec.resultString
+		            if(mostrecentword.indexOf("draw")!==-1) {loop();}
+		            else if(mostrecentword.indexOf("stop")!==-1) {noLoop();}
+                else if(mostrecentword.indexOf("clear canvas")!==-1) {clear();}
+                else if(mostrecentword.indexOf("show video")!==-1) {video.show();}
+                else if(mostrecentword.indexOf("hide video")!==-1) {video.hide();}
+                else if(mostrecentword.indexOf("circles")!==-1) {fw = 1}
+                else if(mostrecentword.indexOf("fireworks")!==-1) {fw = -1;}
+                else if(mostrecentword.indexOf("hide tips")!==-1) {var tips = document.getElementById("tips");
+                                                                   tips.style.display = "none";}
+                else if(mostrecentword.indexOf("show tips")!==-1) {var tips = document.getElementById("tips");
+                                                                   tips.style.display = "contents";}
+                else if(mostrecentword.indexOf("save")!==-1) {var save = document.getElementById("MAIN");
+                                                                  save.save('art.png');}
+		            console.log(mostrecentword);
+                }
+                console.log(SpeechRec);
+            }
+        }
+
+        function draw() {
+            translate(width, 0);
+            scale(-1,1);
+
+            if (poses.length > 0 && fw === -1) {
+                drawleftWrist(poses[0].pose);
+                drawrightWrist(poses[0].pose);
+            } 
+            else if (poses.length > 0 && fw === 1) {
+              drawleftCircle(poses[0].pose);
+              drawrightCircle(poses[0].pose);
+            };
+
+            for (let i = 0; i < fireworks.length; i++) {
+                 fireworks[i].update();
+                 fireworks[i].show();
+            }
+
+            console.log(poses);
+        }
+
+  class Firework {
+    constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.vx = random(-3, 3);
+    this.vy = random(-10, -5);
+    this.gravity = 0.5;
+    this.color = color(random(255), random(255), random(255));
+    this.exploded = false;
+    this.particles = [];
+    this.lifespan = 255;
+  }
+  
+  update() {
+    if (!this.exploded) {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += this.gravity;
+      this.lifespan -=2;
+      
+      // Stops firework at max height
+      if (this.vy >= 0) {
+        this.explode();
+      }
+    }
+  }
+  
+  explode() {
+    this.exploded = true;
+  }
+  
+  show() {
+    if (!this.exploded) {
+      stroke(this.color,this.lifespan);
+      strokeWeight(4);
+      point(this.x, this.y);
+    }
+  }
+}
+
+        function drawleftWrist(pose) {
+
+            leftWristX += (pose.leftWrist.x - leftWristX) * 0.3;
+            leftWristY += (pose.leftWrist.y - leftWristY) * 0.3;
+
+            fireworks.push(new Firework(leftWristX, leftWristY));
+        }
+
+        function drawrightWrist(pose) {
+
+            rightWristX += (pose.rightWrist.x - rightWristX) * 0.3;
+            rightWristY += (pose.rightWrist.y - rightWristY) * 0.3;
+
+            fireworks.push(new Firework(rightWristX, rightWristY));
+        }
+
+        function drawleftCircle(pose) {
+
+            leftWristX += (pose.leftWrist.x - leftWristX) * 0.3;
+            leftWristY += (pose.leftWrist.y - leftWristY) * 0.3;
+
+            noStroke();
+            fill(255, 0, 0);
+            ellipse(leftWristX, leftWristY, 8);
+        }
+
+        function drawrightCircle(pose) {
+
+            rightWristX += (pose.rightWrist.x - rightWristX) * 0.3;
+            rightWristY += (pose.rightWrist.y - rightWristY) * 0.3;
+
+            noStroke();
+            fill(255, 0, 0);
+            ellipse(rightWristX, rightWristY, 8);
+        }
+
+        function modelReady() {
+            select('#status').html('');
+        }
+
+    </script>
+</body>
 </html>
