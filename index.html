@@ -63,7 +63,10 @@
         let leftWristX, leftWristY;
         let rightWristX, rightWristY;
         let fireworks = [];
-        let fw = 1
+        let fw = 1;
+        let r;
+        let g;
+        let b;
 
         function setup() {
             canvas = createCanvas(683, 483);
@@ -73,6 +76,9 @@
             //video.hide();
 
             noLoop();
+            r = 0;
+            g = 0;
+            b = 0;
 
             leftWristX = width/2;
             leftWristY = height/2;
@@ -91,19 +97,54 @@
             function gotSpeech() {
               if (SpeechRec.resultValue) {
                     var mostrecentword = SpeechRec.resultString
+                //Begin/stop drawing
 		            if(mostrecentword.indexOf("draw")!==-1) {loop();}
 		            else if(mostrecentword.indexOf("stop")!==-1) {noLoop();}
+
+                //Clear canvas
                 else if(mostrecentword.indexOf("clear canvas")!==-1) {clear();}
+
+                //Toggle video
                 else if(mostrecentword.indexOf("show video")!==-1) {video.show();}
                 else if(mostrecentword.indexOf("hide video")!==-1) {video.hide();}
+
+                //Types of pens
                 else if(mostrecentword.indexOf("circles")!==-1) {fw = 1}
                 else if(mostrecentword.indexOf("fireworks")!==-1) {fw = -1;}
+
+                //Tips
                 else if(mostrecentword.indexOf("hide tips")!==-1) {var tips = document.getElementById("tips");
                                                                    tips.style.display = "none";}
                 else if(mostrecentword.indexOf("show tips")!==-1) {var tips = document.getElementById("tips");
                                                                    tips.style.display = "contents";}
                 else if(mostrecentword.indexOf("save")!==-1) {var save = document.getElementById("MAIN");
                                                                   save.save('art.png');}
+                //Colors lower case
+                else if(mostrecentword.indexOf("red")!==-1) {r = 255, g = 0, b = 0;}
+                else if(mostrecentword.indexOf("green")!==-1) {r = 0, g = 255, b = 0;}
+                else if(mostrecentword.indexOf("blue")!==-1) {r = 0, g = 0, b = 255;}
+                else if(mostrecentword.indexOf("black")!==-1) {r = 0, g = 0, b = 0;}
+                else if(mostrecentword.indexOf("white")!==-1) {r = 255, g = 255, b = 255;}
+                else if(mostrecentword.indexOf("yellow")!==-1) {r = 255, g = 255, b = 0;}
+                else if(mostrecentword.indexOf("pink")!==-1) {r = 255, g = 51, b = 153;}
+                else if(mostrecentword.indexOf("grey")!==-1) {r = 128, g = 128, b = 128;}
+                else if(mostrecentword.indexOf("orange")!==-1) {r = 255, g = 153, b = 51;}
+                else if(mostrecentword.indexOf("brown")!==-1) {r = 153, g = 76, b = 0;}
+                else if(mostrecentword.indexOf("purple")!==-1) {r = 153, g = 0, b = 153;}
+
+                //Colors capital
+                else if(mostrecentword.indexOf("Red")!==-1) {r = 255, g = 0, b = 0;}
+                else if(mostrecentword.indexOf("Green")!==-1) {r = 0, g = 255, b = 0;}
+                else if(mostrecentword.indexOf("Blue")!==-1) {r = 0, g = 0, b = 255;}
+                else if(mostrecentword.indexOf("Black")!==-1) {r = 0, g = 0, b = 0;}
+                else if(mostrecentword.indexOf("White")!==-1) {r = 255, g = 255, b = 255;}
+                else if(mostrecentword.indexOf("Yellow")!==-1) {r = 255, g = 255, b = 0;}
+                else if(mostrecentword.indexOf("Pink")!==-1) {r = 255, g = 51, b = 153;}
+                else if(mostrecentword.indexOf("Grey")!==-1) {r = 128, g = 128, b = 128;}
+                else if(mostrecentword.indexOf("Orange")!==-1) {r = 255, g = 153, b = 51;}
+                else if(mostrecentword.indexOf("Brown")!==-1) {r = 153, g = 76, b = 0;}
+                else if(mostrecentword.indexOf("Purple")!==-1) {r = 153, g = 0, b = 153;}
+
 		            console.log(mostrecentword);
                 }
                 console.log(SpeechRec);
@@ -121,7 +162,7 @@
             else if (poses.length > 0 && fw === 1) {
               drawleftCircle(poses[0].pose);
               drawrightCircle(poses[0].pose);
-            };
+            }
 
             for (let i = 0; i < fireworks.length; i++) {
                  fireworks[i].update();
@@ -141,7 +182,6 @@
     this.color = color(random(255), random(255), random(255));
     this.exploded = false;
     this.particles = [];
-    this.lifespan = 255;
   }
   
   update() {
@@ -149,7 +189,6 @@
       this.x += this.vx;
       this.y += this.vy;
       this.vy += this.gravity;
-      this.lifespan -=2;
       
       // Stops firework at max height
       if (this.vy >= 0) {
@@ -171,6 +210,7 @@
   }
 }
 
+        //Draw with fireworks
         function drawleftWrist(pose) {
 
             leftWristX += (pose.leftWrist.x - leftWristX) * 0.3;
@@ -187,13 +227,14 @@
             fireworks.push(new Firework(rightWristX, rightWristY));
         }
 
+        //Draw with circles
         function drawleftCircle(pose) {
 
             leftWristX += (pose.leftWrist.x - leftWristX) * 0.3;
             leftWristY += (pose.leftWrist.y - leftWristY) * 0.3;
 
             noStroke();
-            fill(255, 0, 0);
+            fill(r, g, b);
             ellipse(leftWristX, leftWristY, 8);
         }
 
@@ -203,10 +244,10 @@
             rightWristY += (pose.rightWrist.y - rightWristY) * 0.3;
 
             noStroke();
-            fill(255, 0, 0);
+            fill(r, g, b);
             ellipse(rightWristX, rightWristY, 8);
         }
-
+      
         function modelReady() {
             select('#status').html('');
         }
