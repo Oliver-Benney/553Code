@@ -63,7 +63,8 @@
         let leftWristX, leftWristY;
         let rightWristX, rightWristY;
         let fireworks = [];
-        let fw = 1;
+        let m = 1;
+        let sa = 1;
         let r;
         let g;
         let b;
@@ -79,6 +80,7 @@
             r = 0;
             g = 0;
             b = 0;
+            frameRate(17);
 
             leftWristX = width/2;
             leftWristY = height/2;
@@ -97,7 +99,13 @@
             function gotSpeech() {
               if (SpeechRec.resultValue) {
                     var mostrecentword = SpeechRec.resultString
-                //Begin/stop drawing
+
+                    //Punctuation to remove 
+                    let regex = /[.,\/#!$%\^&\*;:{}=\-_`~()]/g;
+                    //Replace punctuation with nothing and force lower case
+                    mostrecentword = mostrecentword.replace(regex, "").toLowerCase();
+                
+                //Toggle drawing
 		            if(mostrecentword.indexOf("draw")!==-1) {loop();}
 		            else if(mostrecentword.indexOf("stop")!==-1) {noLoop();}
 
@@ -109,17 +117,19 @@
                 else if(mostrecentword.indexOf("hide video")!==-1) {video.hide();}
 
                 //Types of pens
-                else if(mostrecentword.indexOf("circles")!==-1) {fw = 1}
-                else if(mostrecentword.indexOf("fireworks")!==-1) {fw = -1;}
+                else if(mostrecentword.indexOf("circles")!==-1) {m = 1}
+                else if(mostrecentword.indexOf("fireworks")!==-1) {m = -1;}
 
-                //Tips
+                //Toggle tips
                 else if(mostrecentword.indexOf("hide tips")!==-1) {var tips = document.getElementById("tips");
                                                                    tips.style.display = "none";}
                 else if(mostrecentword.indexOf("show tips")!==-1) {var tips = document.getElementById("tips");
                                                                    tips.style.display = "contents";}
-                else if(mostrecentword.indexOf("save")!==-1) {var save = document.getElementById("MAIN");
-                                                                  save.save('art.png');}
-                //Colors lower case
+                
+                //Saving image
+                else if(mostrecentword.indexOf("save")!==-1) {save('doodle.png');}
+
+                //Colors
                 else if(mostrecentword.indexOf("red")!==-1) {r = 255, g = 0, b = 0;}
                 else if(mostrecentword.indexOf("green")!==-1) {r = 0, g = 255, b = 0;}
                 else if(mostrecentword.indexOf("blue")!==-1) {r = 0, g = 0, b = 255;}
@@ -132,18 +142,9 @@
                 else if(mostrecentword.indexOf("brown")!==-1) {r = 153, g = 76, b = 0;}
                 else if(mostrecentword.indexOf("purple")!==-1) {r = 153, g = 0, b = 153;}
 
-                //Colors capital
-                else if(mostrecentword.indexOf("Red")!==-1) {r = 255, g = 0, b = 0;}
-                else if(mostrecentword.indexOf("Green")!==-1) {r = 0, g = 255, b = 0;}
-                else if(mostrecentword.indexOf("Blue")!==-1) {r = 0, g = 0, b = 255;}
-                else if(mostrecentword.indexOf("Black")!==-1) {r = 0, g = 0, b = 0;}
-                else if(mostrecentword.indexOf("White")!==-1) {r = 255, g = 255, b = 255;}
-                else if(mostrecentword.indexOf("Yellow")!==-1) {r = 255, g = 255, b = 0;}
-                else if(mostrecentword.indexOf("Pink")!==-1) {r = 255, g = 51, b = 153;}
-                else if(mostrecentword.indexOf("Grey")!==-1) {r = 128, g = 128, b = 128;}
-                else if(mostrecentword.indexOf("Orange")!==-1) {r = 255, g = 153, b = 51;}
-                else if(mostrecentword.indexOf("Brown")!==-1) {r = 153, g = 76, b = 0;}
-                else if(mostrecentword.indexOf("Purple")!==-1) {r = 153, g = 0, b = 153;}
+                //Single arm or both arms
+                else if(mostrecentword.indexOf("both arms")!==-1) {sa = 0;}
+                else if(mostrecentword.indexOf("one arm")!==-1) {sa = 1;}
 
 		            console.log(mostrecentword);
                 }
@@ -155,11 +156,11 @@
             translate(width, 0);
             scale(-1,1);
 
-            if (poses.length > 0 && fw === -1) {
+            if (poses.length > 0 && m === -1) {
                 drawleftWrist(poses[0].pose);
                 drawrightWrist(poses[0].pose);
             } 
-            else if (poses.length > 0 && fw === 1) {
+            else if (poses.length > 0 && m === 1) {
               drawleftCircle(poses[0].pose);
               drawrightCircle(poses[0].pose);
             }
@@ -216,7 +217,12 @@
             leftWristX += (pose.leftWrist.x - leftWristX) * 0.3;
             leftWristY += (pose.leftWrist.y - leftWristY) * 0.3;
 
-            fireworks.push(new Firework(leftWristX, leftWristY));
+            if (pose.leftWrist.y < pose.rightWrist.y && sa === 1) {
+              fireworks.push(new Firework(leftWristX, leftWristY));
+            }
+            else if (sa === 0) {
+              fireworks.push(new Firework(leftWristX, leftWristY));
+            }
         }
 
         function drawrightWrist(pose) {
@@ -224,7 +230,12 @@
             rightWristX += (pose.rightWrist.x - rightWristX) * 0.3;
             rightWristY += (pose.rightWrist.y - rightWristY) * 0.3;
 
-            fireworks.push(new Firework(rightWristX, rightWristY));
+            if (pose.rightWrist.y < pose.leftWrist.y && sa === 1) {
+              fireworks.push(new Firework(rightWristX, rightWristY));
+            }
+            else if (sa === 0) {
+              fireworks.push(new Firework(rightWristX, rightWristY));
+            }
         }
 
         //Draw with circles
@@ -233,9 +244,16 @@
             leftWristX += (pose.leftWrist.x - leftWristX) * 0.3;
             leftWristY += (pose.leftWrist.y - leftWristY) * 0.3;
 
-            noStroke();
-            fill(r, g, b);
-            ellipse(leftWristX, leftWristY, 8);
+            if (pose.leftWrist.y < pose.rightWrist.y && sa === 1) {
+              noStroke();
+              fill(r, g, b);
+              ellipse(leftWristX, leftWristY, 8);
+              }
+              else if (sa === 0) {
+                noStroke();
+                fill(r, g, b);
+                ellipse(leftWristX, leftWristY, 8);
+            }
         }
 
         function drawrightCircle(pose) {
@@ -243,9 +261,16 @@
             rightWristX += (pose.rightWrist.x - rightWristX) * 0.3;
             rightWristY += (pose.rightWrist.y - rightWristY) * 0.3;
 
-            noStroke();
-            fill(r, g, b);
-            ellipse(rightWristX, rightWristY, 8);
+            if (pose.rightWrist.y < pose.leftWrist.y && sa === 1) {
+              noStroke();
+              fill(r, g, b);
+              ellipse(rightWristX, rightWristY, 8);
+              }
+              else if (sa === 0) {
+                noStroke();
+                fill(r, g, b);
+                ellipse(rightWristX, rightWristY, 8);
+            }
         }
       
         function modelReady() {
