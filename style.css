@@ -11,30 +11,29 @@
     bottom: 0px;
     background-image: url(Museum.jpg);
     background-repeat: no-repeat;
-    background-position: top 58.5% left;
+    background-position: top 66% left;
     background-size: 101.8% 180%;
-}
-
-.frame {
-    z-index: 1;
-    height: 500px;
-    position: fixed;
 }
 
 .video {
     z-index: 5;
     padding-right: 701px;
+    padding-bottom: 45px;
     position: static 10px;
 }
 
 .toolTips {
     color:aliceblue;
-    text-align: center;
+    text-align: right;
     font-size:xx-large;
     padding-top: 20px;
     height: 680px;
-    width: 350px;
+    width: 1500px;
     position: static 10px;
     z-index: 7;
-    background-image: url(TooltipsExtra.png);
+    background-image: url(Tooltips.png), url(Tooltips2.png);
+    background-size: auto, auto;
+    background-position: left, right;
+    background-repeat: no-repeat;
+    background-position-y: top;
 }
