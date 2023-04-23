@@ -74,10 +74,10 @@
             //video.hide();
 
             noLoop();
+            frameRate(17);
             r = 0;
             g = 0;
             b = 0;
-            frameRate(17);
             s = 12;
             o = 1000;
 
@@ -91,9 +91,20 @@
             poses = results;});
             
             let SpeechRec = new p5.SpeechRec('en-US', gotSpeech);
-            let continuous = true;
+            SpeechRec.continuous = false;
+            SpeechRec.onError = restart; 
+            SpeechRec.onEnd = restart;
+            SpeechRec.interim = false;
+            SpeechRec.start();
+
+            function restart(){
+	            SpeechRec.start();
+            }
+
+            //Old code
+            /*let continuous = true;
             let interim = false;
-            SpeechRec.start(continuous, interim);
+            SpeechRec.start(continuous, interim); */
 
             function gotSpeech() {
               if (SpeechRec.resultValue) {
