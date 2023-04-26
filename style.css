@@ -1,6 +1,6 @@
 .title {
     position: static;
-    height: 90px;
+    height: 0px;
 }
 
 .screen {
@@ -16,6 +16,7 @@
 }
 
 .video {
+    padding-top: 98.5px;
     z-index: 5;
     padding-right: 701px;
     padding-bottom: 45px;
@@ -36,4 +37,140 @@
     background-position: left, right;
     background-repeat: no-repeat;
     background-position-y: top;
+}
+
+.mostRecentWord {
+    padding-top: 20px;
+}
+
+.botharms {
+    height: 100px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 56px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.circles {
+    height: 54px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 9px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.clearcanvas {
+    height: 59px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 15px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.draw {
+    height: 54px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 10px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.eraser {
+    height: 60px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 10px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.fill {
+    height: 60px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 6px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.fireworks {
+    height: 50px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 3px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.hideshowtips {
+    height: 54px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 9px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.hideshowvideo {
+    height: 56px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 12px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.lowerraiseopacity {
+    height: 54px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 10px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
+}
+
+.onearm {
+    height: 56px;
+    width: 1500px;
+    z-index: 9;
+    position: static 10px;
+    background-image: url(TooltipsHighlight.png);
+    background-size: auto;
+    background-position: top 12px left 26px;
+    background-repeat: no-repeat;
+    background-size: 22%;
 }

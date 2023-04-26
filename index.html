@@ -25,7 +25,6 @@
             position: absolute;
             z-index: 100;
         }
-
     </style>
 </head>
 <body>
@@ -41,13 +40,51 @@
     <div id="MAIN">
       <div class="screen">
         <div id="tips">
-          <div class="toolTips">
+            <div class="toolTips">
+              <div id = "wow">
+                <div class="botharms">
+              </div></div>
+              <div id = "wow1">
+                <div class="circles">
+              </div></div>
+              <div id = "wow2">
+                <div class="clearcanvas">
+              </div></div>
+              <div id = "wow3">
+                <div class="draw">
+              </div></div>
+              <div id = "wow4">
+                <div class="eraser">
+              </div></div>
+              <div id = "wow5">
+                <div class="fill">
+              </div></div>
+              <div id = "wow6">
+                <div class="fireworks">
+              </div></div>
+              <div id = "wow7">
+                <div class="hideshowtips">
+              </div></div>
+              <div id = "wow8">
+                <div class="hideshowvideo">
+              </div></div>
+              <div id = "wow9">
+                <div class="lowerraiseopacity">
+              </div></div>
+              <div id = "wow10">
+                <div class="onearm">
+              </div></div>
+              </div>
+            </div>
           </div> 
         </div>
       </div>
     </div>
 
-    <p id = "status">Loading...</p>
+    <div class="mostRecentWord">
+        Most Recent Command: <input id="user_input"></input>
+    </div>
+
     <script src="https://unpkg.com/p5"></script>
     <script src="https://unpkg.com/ml5"></script>
     <script src="https://cdn.jsdelivr.net/gh/IDMNYU/p5.js-speech@0.0.3/lib/p5.speech.js"></script>
@@ -81,12 +118,35 @@
             s = 12;
             o = 1000;
 
+            var box = document.getElementById("wow");
+            box.style.display = "none"; 
+            var box1 = document.getElementById("wow1");
+            box1.style.display = "none";
+            var box2 = document.getElementById("wow7");
+            box2.style.display = "none";
+            var box3 = document.getElementById("wow3");
+            box3.style.display = "none";
+            var box4 = document.getElementById("wow4");
+            box4.style.display = "none";
+            var box5 = document.getElementById("wow5");
+            box5.style.display = "none";
+            var box6 = document.getElementById("wow6");
+            box6.style.display = "none";
+            var box7 = document.getElementById("wow2");
+            box7.style.display = "none";
+            var box8 = document.getElementById("wow8");
+            box8.style.display = "none";
+            var box9 = document.getElementById("wow9");
+            box9.style.display = "none";
+            var box10 = document.getElementById("wow10");
+            box10.style.display = "none";
+     
             leftWristX = width/2;
             leftWristY = height/2;
             rightWristX = width/2;
             rightWristY = height/2;
 
-            poseNet = ml5.poseNet(video, modelReady);
+            poseNet = ml5.poseNet(video);
             poseNet.on('pose', results => {
             poses = results;});
             
@@ -121,10 +181,25 @@
 
                 //Clear canvas
                 else if(mostrecentword.indexOf("clear canvas")!==-1) {clear();}
+                else if(mostrecentword.indexOf("play canvas")!==-1) {clear();}
+                else if(mostrecentword.indexOf("clare canvas")!==-1) {clear();}
 
                 //Toggle video
                 else if(mostrecentword.indexOf("show video")!==-1) {video.show();}
-                else if(mostrecentword.indexOf("hide video")!==-1) {video.hide();}
+                else if(mostrecentword.indexOf("hide video")!==-1) {video.hide(); 
+                                                                    //main
+                                                                    box7.style.display = "contents";
+                                                                    //rest 
+                                                                    box.style.display = "none";
+                                                                    box1.style.display = "none";
+                                                                    box2.style.display = "none";
+                                                                    box3.style.display = "none";
+                                                                    box4.style.display = "none";
+                                                                    box5.style.display = "none";
+                                                                    box6.style.display = "none";
+                                                                    box8.style.display = "none";
+                                                                    box9.style.display = "none";
+                                                                    box10.style.display = "none";}
 
                 //Types of pens
                 else if(mostrecentword.indexOf("circles")!==-1) {m = 1}
@@ -170,11 +245,15 @@
                 //Opacity
                 else if(mostrecentword.indexOf("lower opacity")!==-1) {o = 150;}
                 else if(mostrecentword.indexOf("raise opacity")!==-1) {o = 1000;}
-
+                else if(mostrecentword.indexOf("ray's opacity")!==-1) {o = 1000;}
+              
 		            console.log(mostrecentword);
                 }
                 console.log(SpeechRec);
-            }
+
+                let user_input = select('#user_input')
+                user_input.value(mostrecentword);
+              }
         }
 
         function draw() {
@@ -338,10 +417,6 @@
               erase();
               ellipse(rightWristX, rightWristY, s);
             }
-        }
-      
-        function modelReady() {
-            select('#status').html('');
         }
 
     </script>
