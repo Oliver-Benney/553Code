@@ -40,7 +40,10 @@
 }
 
 .mostRecentWord {
+    width: 1500px;
     padding-top: 20px;
+    position: static;
+    display: inline;
 }
 
 .botharms {
@@ -48,9 +51,9 @@
     width: 1500px;
     z-index: 9;
     position: static 10px;
-    background-image: url(TooltipsHighlight.png);
+    background-image: url(TooltipsHighlight.png), url(TooltipsHighlight.png);
     background-size: auto;
-    background-position: top 56px left 26px;
+    background-position: top 56px left 26px, top 56px right 700px;
     background-repeat: no-repeat;
     background-size: 22%;
 }
@@ -60,9 +63,9 @@
     width: 1500px;
     z-index: 9;
     position: static 10px;
-    background-image: url(TooltipsHighlight.png);
+    background-image: url(TooltipsHighlight.png), url(TooltipsHighlight.png);
     background-size: auto;
-    background-position: top 9px left 26px;
+    background-position: top 9px left 26px, top 9px right 700px;
     background-repeat: no-repeat;
     background-size: 22%;
 }
@@ -72,9 +75,9 @@
     width: 1500px;
     z-index: 9;
     position: static 10px;
-    background-image: url(TooltipsHighlight.png);
+    background-image: url(TooltipsHighlight.png), url(TooltipsHighlight.png);
     background-size: auto;
-    background-position: top 15px left 26px;
+    background-position: top 15px left 26px, top 15px right 700px;
     background-repeat: no-repeat;
     background-size: 22%;
 }
@@ -84,9 +87,9 @@
     width: 1500px;
     z-index: 9;
     position: static 10px;
-    background-image: url(TooltipsHighlight.png);
+    background-image: url(TooltipsHighlight.png), url(TooltipsHighlight.png);
     background-size: auto;
-    background-position: top 10px left 26px;
+    background-position: top 10px left 26px, top 10px right 700px;
     background-repeat: no-repeat;
     background-size: 22%;
 }
