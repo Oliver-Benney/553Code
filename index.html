@@ -74,9 +74,6 @@
               <div id = "onearm">
                 <div class="onearm">
               </div></div>
-              <div id = "save">
-                <div class="save">
-              </div></div>
               </div>
             </div>
           </div> 
@@ -198,10 +195,10 @@
                                                          box.style.visibility = "hidden";}
 		            else if(mostrecentword.indexOf("stop")!==-1) {noLoop();
                                                                     //main 
-                                                                    document.getElementById("clearcanvas").style.marginLeft= "675px";
-                                                                    box2.style.visibility = "visible";
+                                                                    document.getElementById("draw").style.marginLeft= "675px";
+                                                                    box3.style.visibility = "visible";
                                                                     //rest 
-                                                                    box3.style.visibility = "hidden";
+                                                                    box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
@@ -365,11 +362,11 @@
                 //Saving image
                 else if(mostrecentword.indexOf("save")!==-1) {save('doodle.png');
                                                                     //main
-                                                                    document.getElementById("botharms").style.marginLeft= "675px";
-                                                                    box.style.visibility = "visible";
+                                                                    document.getElementById("circles").style.marginLeft= "675px";
+                                                                    box1.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
-                                                                    box1.style.visibility = "hidden";
+                                                                    box.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
                                                                     box4.style.visibility = "hidden";
@@ -382,14 +379,14 @@
                 //Colors for circles
                 else if(mostrecentword.indexOf("red")!==-1) {r = 255, g = 0, b = 0;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -397,14 +394,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("green")!==-1) {r = 0, g = 255, b = 0;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -412,14 +409,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("blue")!==-1) {r = 0, g = 0, b = 255;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -427,14 +424,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("black")!==-1) {r = 0, g = 0, b = 0;                                                                    
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -442,14 +439,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("white")!==-1) {r = 255, g = 255, b = 255;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -457,14 +454,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("yellow")!==-1) {r = 255, g = 255, b = 0;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -472,14 +469,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("pink")!==-1) {r = 255, g = 51, b = 153;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -487,14 +484,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("grey")!==-1) {r = 128, g = 128, b = 128;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -502,14 +499,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("orange")!==-1) {r = 255, g = 153, b = 51;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -517,14 +514,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("brown")!==-1) {r = 153, g = 76, b = 0;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -532,14 +529,14 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("purple")!==-1) {r = 153, g = 0, b = 153;
                                                                     //main
-                                                                    document.getElementById("draw").style.marginLeft= "675px";
-                                                                    box3.style.visibility = "visible";
+                                                                    document.getElementById("eraser").style.marginLeft= "675px";
+                                                                    box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box2.style.visibility = "hidden";
                                                                     box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
-                                                                    box4.style.visibility = "hidden";
+                                                                    box3.style.visibility = "hidden";
                                                                     box5.style.visibility = "hidden";
                                                                     box9.style.visibility = "hidden";
                                                                     box10.style.visibility = "hidden";
@@ -623,11 +620,11 @@
                 //Pen size
                 else if(mostrecentword.indexOf("small")!==-1) {s = 6;
                                                                     //main
-                                                                    document.getElementById("circles").style.marginLeft= "675px"
-                                                                    box1.style.visibility = "visible";
+                                                                    document.getElementById("clearcanvas").style.marginLeft= "675px"
+                                                                    box2.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
-                                                                    box2.style.visibility = "hidden";
+                                                                    box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
                                                                     box4.style.visibility = "hidden";
@@ -638,11 +635,11 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("medium")!==-1) {s = 12;
                                                                     //main
-                                                                    document.getElementById("circles").style.marginLeft= "675px"
-                                                                    box1.style.visibility = "visible";
+                                                                    document.getElementById("clearcanvas").style.marginLeft= "675px"
+                                                                    box2.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
-                                                                    box2.style.visibility = "hidden";
+                                                                    box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
                                                                     box4.style.visibility = "hidden";
@@ -653,11 +650,11 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("large")!==-1) {s = 18;
                                                                     //main
-                                                                    document.getElementById("circles").style.marginLeft= "675px"
-                                                                    box1.style.visibility = "visible";
+                                                                    document.getElementById("clearcanvas").style.marginLeft= "675px"
+                                                                    box2.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
-                                                                    box2.style.visibility = "hidden";
+                                                                    box1.style.visibility = "hidden";
                                                                     box7.style.visibility = "hidden";
                                                                     box6.style.visibility = "hidden";
                                                                     box4.style.visibility = "hidden";
@@ -711,7 +708,21 @@
                                                                     box8.style.visibility = "hidden";
                                                                     box.style.visibility = "hidden";}
 
-                else if(mostrecentword.indexOf("random word")!==-1) {var randomword = random(words);}
+                else if(mostrecentword.indexOf("random word")!==-1) {var randomword = random(words);
+                                                                     document.getElementById("botharms").style.marginLeft= "675px";
+                                                                     //main
+                                                                     box.style.visibility = "visible";
+                                                                     //rest 
+                                                                     box3.style.visibility = "hidden";
+                                                                     box1.style.visibility = "hidden";
+                                                                     box7.style.visibility = "hidden";
+                                                                     box6.style.visibility = "hidden";
+                                                                     box4.style.visibility = "hidden";
+                                                                     box5.style.visibility = "hidden";
+                                                                     box2.style.visibility = "hidden";
+                                                                     box10.style.visibility = "hidden";
+                                                                     box8.style.visibility = "hidden";
+                                                                     box9.style.visibility = "hidden";}
 
 		            console.log(mostrecentword);
                 }
