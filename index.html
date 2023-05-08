@@ -114,7 +114,7 @@
             //video.hide();
 
             noLoop();
-            frameRate(17);
+            frameRate(19);
             r = 0;
             g = 0;
             b = 0;
@@ -179,8 +179,9 @@
                     mostrecentword = mostrecentword.replace(regex, "").toLowerCase();
                 
                 //Toggle drawing
-		            if(mostrecentword.indexOf("draw")!==-1) {loop();    
+		            if(mostrecentword.indexOf("draw")!==-1) {loop(); m = 1;    
                                                          //main
+                                                         document.getElementById("draw").style.marginLeft= "0px";
                                                          box3.style.visibility = "visible";
                                                          //rest 
                                                          box2.style.visibility = "hidden";
@@ -212,6 +213,7 @@
                 //Clear canvas
                 else if(mostrecentword.indexOf("clear canvas")!==-1) {clear();
                                                                     //main
+                                                                    document.getElementById("clearcanvas").style.marginLeft= "0px"
                                                                     box2.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
@@ -226,6 +228,7 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("play canvas")!==-1) {clear();
                                                                     //main
+                                                                    document.getElementById("clearcanvas").style.marginLeft= "0px"
                                                                     box2.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
@@ -240,6 +243,23 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("clare canvas")!==-1) {clear();
                                                                     //main
+                                                                    document.getElementById("clearcanvas").style.marginLeft= "0px"
+                                                                    box2.style.visibility = "visible";
+                                                                    //rest 
+                                                                    box3.style.visibility = "hidden";
+                                                                    box1.style.visibility = "hidden";
+                                                                    box7.style.visibility = "hidden";
+                                                                    box6.style.visibility = "hidden";
+                                                                    box4.style.visibility = "hidden";
+                                                                    box5.style.visibility = "hidden";
+                                                                    box9.style.visibility = "hidden";
+                                                                    box10.style.visibility = "hidden";
+                                                                    box8.style.visibility = "hidden";
+                                                                    box.style.visibility = "hidden";}
+
+                else if(mostrecentword.indexOf("clay canvas")!==-1) {clear();
+                                                                    //main
+                                                                    document.getElementById("clearcanvas").style.marginLeft= "0px"
                                                                     box2.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
@@ -286,6 +306,7 @@
                 //Types of pens
                 else if(mostrecentword.indexOf("circles")!==-1) {m = 1;
                                                                     //main
+                                                                    document.getElementById("circles").style.marginLeft= "0px";
                                                                     box1.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
@@ -314,6 +335,7 @@
                                                                     box.style.visibility = "hidden";}
                 else if(mostrecentword.indexOf("eraser")!==-1) {m = -2;
                                                                     //main
+                                                                    document.getElementById("eraser").style.marginLeft= "0px";
                                                                     box4.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
@@ -546,6 +568,7 @@
                 //Single arm / both arms
                 else if(mostrecentword.indexOf("both arms")!==-1) {sa = 0;
                                                                     //main
+                                                                    document.getElementById("botharms").style.marginLeft= "0px";
                                                                     box.style.visibility = "visible";
                                                                     //rest 
                                                                     box3.style.visibility = "hidden";
@@ -633,7 +656,7 @@
                                                                     box10.style.visibility = "hidden";
                                                                     box8.style.visibility = "hidden";
                                                                     box.style.visibility = "hidden";}
-                else if(mostrecentword.indexOf("medium")!==-1) {s = 12;
+                else if(mostrecentword.indexOf("medium")!==-1) {s = 15;
                                                                     //main
                                                                     document.getElementById("clearcanvas").style.marginLeft= "675px"
                                                                     box2.style.visibility = "visible";
@@ -648,7 +671,7 @@
                                                                     box10.style.visibility = "hidden";
                                                                     box8.style.visibility = "hidden";
                                                                     box.style.visibility = "hidden";}
-                else if(mostrecentword.indexOf("large")!==-1) {s = 18;
+                else if(mostrecentword.indexOf("large")!==-1) {s = 24;
                                                                     //main
                                                                     document.getElementById("clearcanvas").style.marginLeft= "675px"
                                                                     box2.style.visibility = "visible";
@@ -801,7 +824,7 @@
   
   show() {
     if (!this.exploded) {
-      stroke(this.color,this.lifespan);
+      stroke(this.color);
       strokeWeight(4);
       point(this.x, this.y);
     }
